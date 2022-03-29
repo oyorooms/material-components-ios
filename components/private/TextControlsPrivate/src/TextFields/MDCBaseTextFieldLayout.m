@@ -342,7 +342,7 @@
       } else {
         originX = labelMinX;
       }
-      rect = CGRectMake(originX, originY, size.width, size.height);
+      rect = CGRectMake(16, originY, size.width, size.height);
       break;
     case MDCTextControlLabelPositionNormal:
       originY = textRectMidY - (0.5f * size.height);
