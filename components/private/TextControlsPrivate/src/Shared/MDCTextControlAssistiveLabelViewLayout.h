@@ -29,6 +29,7 @@
 @property(nonatomic, assign, readonly) CGRect leadingAssistiveLabelFrame;
 @property(nonatomic, assign, readonly) CGRect trailingAssistiveLabelFrame;
 @property(nonatomic, assign, readonly) CGFloat calculatedHeight;
+@property(nonatomic, assign) CGFloat leadingAssistiveViewTopMargin;
 
 - (instancetype)initWithWidth:(CGFloat)superviewWidth
                leadingAssistiveLabel:(UILabel *)leadingAssistiveLabel

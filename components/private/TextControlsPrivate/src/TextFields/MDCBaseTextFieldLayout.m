@@ -48,9 +48,11 @@
                (MDCTextControlAssistiveLabelDrawPriority)assistiveLabelDrawPriority
      customAssistiveLabelDrawPriority:(CGFloat)customAssistiveLabelDrawPriority
                                 isRTL:(BOOL)isRTL
-                            isEditing:(BOOL)isEditing {
+                            isEditing:(BOOL)isEditing
+      withLeadingAssistLabelTopMargin: (CGFloat)topMargin {
   self = [super init];
   if (self) {
+      self.leadingAssistiveViewTopMargin = topMargin;
     [self calculateLayoutWithTextFieldSize:textFieldSize
                       positioningReference:positioningReference
             horizontalPositioningReference:horizontalPositioningReference
@@ -256,7 +258,7 @@
                                           floatingLabelMinY:floatingLabelMinY
                                                    textRect:textRectNormal
                                                       isRTL:isRTL];
-
+  self.assistiveLabelViewLayout.leadingAssistiveViewTopMargin = self.leadingAssistiveViewTopMargin;
   self.assistiveLabelViewLayout = [[MDCTextControlAssistiveLabelViewLayout alloc]
                          initWithWidth:textFieldWidth
                  leadingAssistiveLabel:leadingAssistiveLabel
@@ -265,7 +267,7 @@
       customAssistiveLabelDrawPriority:customAssistiveLabelDrawPriority
                     leadingEdgePadding:leadingEdgePadding
                    trailingEdgePadding:trailingEdgePadding
-           paddingAboveAssistiveLabels:positioningReference.paddingAboveAssistiveLabels
+           paddingAboveAssistiveLabels: self.leadingAssistiveViewTopMargin
            paddingBelowAssistiveLabels:positioningReference.paddingBelowAssistiveLabels
                                  isRTL:isRTL];
   self.assistiveLabelViewFrame = CGRectMake(0, containerHeight, textFieldWidth,

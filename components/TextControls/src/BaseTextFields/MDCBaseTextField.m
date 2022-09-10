@@ -192,7 +192,8 @@ static char *const kKVOContextMDCBaseTextField = "kKVOContextMDCBaseTextField";
       [self textControlColorViewModelForState:self.textControlState];
   [self applyColorViewModel:colorViewModel withLabelPosition:self.labelPosition];
   CGSize fittingSize = CGSizeMake(CGRectGetWidth(self.bounds), CGFLOAT_MAX);
-  self.layout = [self calculateLayoutWithTextFieldSize:fittingSize];
+  self.layout = [self calculateLayoutWithTextFieldSize:fittingSize withLeadingAssistLabelTopMargin:self.leadingAssistiveViewTopMargin];
+  self.layout.leadingAssistiveViewTopMargin = self.leadingAssistiveViewTopMargin;
   self.labelFrame = [self.layout labelFrameWithLabelPosition:self.labelPosition];
 }
 
@@ -270,7 +271,8 @@ static char *const kKVOContextMDCBaseTextField = "kKVOContextMDCBaseTextField";
   return CGRectMake(CGRectGetMinX(textRect), minY, CGRectGetWidth(textRect), systemDefinedHeight);
 }
 
-- (MDCBaseTextFieldLayout *)calculateLayoutWithTextFieldSize:(CGSize)textFieldSize {
+- (MDCBaseTextFieldLayout *)calculateLayoutWithTextFieldSize:(CGSize)textFieldSize
+                             withLeadingAssistLabelTopMargin: (CGFloat)topMargin {
   CGFloat clampedCustomAssistiveLabelDrawPriority =
       [self clampedCustomAssistiveLabelDrawPriority:self.customAssistiveLabelDrawPriority];
   CGFloat clearButtonSideLength = [self clearButtonSideLengthWithTextFieldSize:textFieldSize];
@@ -300,7 +302,8 @@ static char *const kKVOContextMDCBaseTextField = "kKVOContextMDCBaseTextField";
             assistiveLabelDrawPriority:self.assistiveLabelDrawPriority
       customAssistiveLabelDrawPriority:clampedCustomAssistiveLabelDrawPriority
                                  isRTL:self.shouldLayoutForRTL
-                             isEditing:self.isEditing];
+                             isEditing:self.isEditing
+          withLeadingAssistLabelTopMargin:topMargin];
 }
 
 - (id<MDCTextControlHorizontalPositioning>)createHorizontalPositioningReference {
@@ -350,7 +353,7 @@ static char *const kKVOContextMDCBaseTextField = "kKVOContextMDCBaseTextField";
 
 - (CGSize)preferredSizeWithWidth:(CGFloat)width {
   CGSize fittingSize = CGSizeMake(width, CGFLOAT_MAX);
-  MDCBaseTextFieldLayout *layout = [self calculateLayoutWithTextFieldSize:fittingSize];
+  MDCBaseTextFieldLayout *layout = [self calculateLayoutWithTextFieldSize:fittingSize withLeadingAssistLabelTopMargin: self.leadingAssistiveViewTopMargin];
   return CGSizeMake(width, layout.calculatedHeight);
 }
 

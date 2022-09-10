@@ -30,10 +30,12 @@
 @property(nonatomic, assign) CGRect assistiveLabelViewFrame;
 @property(nonatomic, strong, nonnull)
     MDCTextControlAssistiveLabelViewLayout *assistiveLabelViewLayout;
+@property(nonatomic, assign) CGFloat leadingAssistiveViewTopMargin;
 
 @property(nonatomic, readonly) CGFloat calculatedHeight;
 @property(nonatomic, assign) CGFloat containerHeight;
 @property(nonatomic, assign) BOOL labelTruncationIsPresent;
+
 
 /**
   Initializing an MDCBaseTextFieldLayout object with this initializer is tantamount to calculating a
@@ -68,7 +70,8 @@
               (MDCTextControlAssistiveLabelDrawPriority)assistiveLabelDrawPriority
     customAssistiveLabelDrawPriority:(CGFloat)customAssistiveLabelDrawPriority
                                isRTL:(BOOL)isRTL
-                           isEditing:(BOOL)isEditing;
+                           isEditing:(BOOL)isEditing
+    withLeadingAssistLabelTopMargin: (CGFloat)topMargin;
 
 - (CGRect)labelFrameWithLabelPosition:(MDCTextControlLabelPosition)labelPosition;
 

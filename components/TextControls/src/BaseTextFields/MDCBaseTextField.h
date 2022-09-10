@@ -42,6 +42,7 @@
  used to display helper or error text.
  */
 @property(strong, nonatomic, readonly, nonnull) UILabel *leadingAssistiveLabel;
+@property(nonatomic, assign) CGFloat leadingAssistiveViewTopMargin;
 
 /**
  The @c trailingAssistiveLabel is a label below the text on the trailing edge of the view. It can be
